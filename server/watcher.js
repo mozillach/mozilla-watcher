@@ -26,13 +26,13 @@ class Watcher {
   discoverNewRepository(orgName) {
     return this.githubHelper.getRepos(orgName)
     .then((repositories) => {
+      Logger.info(chalk.blue('GitHubHelper: '), repositories.length);
       const checkDate = new Date();
       return this.redisHandler.save(checkDate, repositories);
     }).then((repositories) => {
       return this.checkDifference(repositories);
-    }).catch(({ error, response}) => {
-      Logger.error(chalk.blue('Watcher: '), error);
-      Logger.error(chalk.blue('Watcher: '), response.body);
+    }).catch((err) => {
+      Logger.error(chalk.blue('Watcher: '), err);
     });
   }
 
