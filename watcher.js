@@ -1,7 +1,7 @@
 'use strict';
 
 let chalk = require('chalk');
-let request = require('request');
+let GitHubHelper = require('./github-helper');
 let Logger = require('./logger');
 let RedisHandler = require('./redis-handler');
 
@@ -13,22 +13,28 @@ class Watcher {
   constructor() {
     Logger.info(chalk.blue('Watcher: '), 'initializing..');
     this.redisHandler = new RedisHandler();
+    this.githubHelper = new GitHubHelper();
   }
 
   /**
    * Calls the GitHub API to find out all current repositories. Once this is done
    * it gives the data to the RedisHandler to save the new data.
    *
+   * @param  {String}    orgName  organization name to search for
    * @return {Promise}   Promise that resolves with the difference
    */
-  discoverNewRepository() {
+  discoverNewRepository(orgName) {
     return new Promise((resolve, reject) => {
-      resolve(['foo']);
+      return this.githubHelper.getRepos(orgName);
     }).then((repositories) => {
+      console.log('wird nicht ausgeführt???', repositories);
       let checkDate = new Date();
       return this.redisHandler.save(checkDate, repositories);
     }).then((repositories) => {
       return this.checkDifference(repositories);
+    }).catch(({ error, response}) => {
+      Logger.error(chalk.blue('Watcher: '), error);
+      Logger.error(chalk.blue('Watcher: '), response.body);
     });
   }
 
