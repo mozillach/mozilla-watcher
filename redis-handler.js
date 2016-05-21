@@ -2,13 +2,14 @@
 
 let chalk = require('chalk');
 let redis = require('redis');
+let Logger = require('./logger');
 
 /**
  * Handler for Redis which manages the connection and saving the data.
  */
 class RedisHandler {
   constructor() {
-    console.log(chalk.yellow('RedisHandler: '), 'initializing..');
+    Logger.info(chalk.yellow('RedisHandler: '), 'initializing..');
   }
 
   /**
@@ -19,16 +20,16 @@ class RedisHandler {
    * @return {Promise}           Promise which will resolve once the data is saved
    */
   save(lastCheck, data) {
-    console.log(chalk.yellow('RedisHandler: '), 'start saving..');
-    console.log(chalk.yellow('RedisHandler: '), 'last check was at', lastCheck);
-    console.log(chalk.yellow('RedisHandler: '), 'with data', data);
+    Logger.info(chalk.yellow('RedisHandler: '), 'start saving..');
+    Logger.info(chalk.yellow('RedisHandler: '), 'last check was at', lastCheck);
+    Logger.info(chalk.yellow('RedisHandler: '), 'with data', data);
 
     return new Promise((resolve, reject) => {
-      console.log(chalk.yellow('RedisHandler: '), 'saving data to redis');
+      Logger.info(chalk.yellow('RedisHandler: '), 'saving data to redis');
 
       // TODO: actually save it..
 
-      console.log(chalk.yellow('RedisHandler: '), 'finished saving latest info');
+      Logger.success(chalk.yellow('RedisHandler: '), 'finished saving latest info');
       resolve(data);
     });
   }
@@ -41,16 +42,16 @@ class RedisHandler {
    * @return {Promise}                   Promise which will resolve once the data is saved
    */
   saveDifference(lastCheck, newRepositories) {
-    console.log(chalk.yellow('RedisHandler: '), 'start saving difference..');
-    console.log(chalk.yellow('RedisHandler: '), 'difference was at', lastCheck);
-    console.log(chalk.yellow('RedisHandler: '), 'with data', newRepositories);
+    Logger.info(chalk.yellow('RedisHandler: '), 'start saving difference..');
+    Logger.info(chalk.yellow('RedisHandler: '), 'difference was at', lastCheck);
+    Logger.info(chalk.yellow('RedisHandler: '), 'with data', newRepositories);
 
     return new Promise((resolve, reject) => {
-      console.log(chalk.yellow('RedisHandler: '), 'saving difference data to redis');
+      Logger.info(chalk.yellow('RedisHandler: '), 'saving difference data to redis');
 
       // TODO: actually save it..
 
-      console.log(chalk.yellow('RedisHandler: '), 'finished saving latest differences');
+      Logger.success(chalk.yellow('RedisHandler: '), 'finished saving latest differences');
       resolve(newRepositories);
     });
   }

@@ -2,6 +2,7 @@
 
 let chalk = require('chalk');
 let request = require('request');
+let Logger = require('./logger');
 let RedisHandler = require('./redis-handler');
 
 /**
@@ -10,7 +11,7 @@ let RedisHandler = require('./redis-handler');
  */
 class Watcher {
   constructor() {
-    console.log(chalk.blue('Watcher: '), 'initializing..');
+    Logger.info(chalk.blue('Watcher: '), 'initializing..');
     this.redisHandler = new RedisHandler();
   }
 
