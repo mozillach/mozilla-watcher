@@ -1,9 +1,9 @@
 'use strict';
 
-let chalk = require('chalk');
-let GitHubHelper = require('./github-helper');
-let Logger = require('./logger');
-let RedisHandler = require('./redis-handler');
+const chalk = require('chalk');
+const GitHubHelper = require('./github-helper');
+const Logger = require('./logger');
+const RedisHandler = require('./redis-handler');
 
 /**
  * Watcher is the main Class which initiates the discovery and tells the RedisHandler
@@ -24,11 +24,9 @@ class Watcher {
    * @return {Promise}   Promise that resolves with the difference
    */
   discoverNewRepository(orgName) {
-    return new Promise((resolve, reject) => {
-      return this.githubHelper.getRepos(orgName);
-    }).then((repositories) => {
-      console.log('wird nicht ausgeführt???', repositories);
-      let checkDate = new Date();
+    return this.githubHelper.getRepos(orgName)
+    .then((repositories) => {
+      const checkDate = new Date();
       return this.redisHandler.save(checkDate, repositories);
     }).then((repositories) => {
       return this.checkDifference(repositories);
@@ -48,7 +46,7 @@ class Watcher {
     return new Promise((resolve, reject) => {
       resolve(['im new']);
     }).then((difference) => {
-      let differenceDate = new Date();
+      const differenceDate = new Date();
       return this.redisHandler.saveDifference(differenceDate, difference);
     });
   }

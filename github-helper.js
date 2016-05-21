@@ -1,6 +1,6 @@
 'use strict';
 
-let request = require('request');
+const request = require('request');
 
 class GitHubHelper {
   constructor() {
@@ -16,7 +16,7 @@ class GitHubHelper {
    */
   getRepos(orgName, page = 1) {
     return new Promise((resolve, reject) => {
-      let options = {
+      const options = {
         url: 'https://api.github.com/orgs/' + orgName + '/repos?per_page=100&page=' + page,
         headers: {
           'User-Agent': 'MichaelKohler/mozilla-github-watcher',
@@ -28,7 +28,7 @@ class GitHubHelper {
         if (error || response.statusCode !== 200) {
           reject({ error, response });
         } else {
-          let fetchedRepos = JSON.parse(body);
+          const fetchedRepos = JSON.parse(body);
           console.log(fetchedRepos.length);
           resolve(fetchedRepos);
         }

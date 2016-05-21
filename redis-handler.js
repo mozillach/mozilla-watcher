@@ -1,8 +1,8 @@
 'use strict';
 
-let chalk = require('chalk');
-let redis = require('redis');
-let Logger = require('./logger');
+const chalk = require('chalk');
+const redis = require('redis');
+const Logger = require('./logger');
 
 /**
  * Handler for Redis which manages the connection and saving the data.
