@@ -16,38 +16,38 @@ class GitHubHelper {
    * @param  {String} orgName organization name to query
    * @return {Promise}        Promise which resolves with all repositories found
    */
-  getRepos(orgName, page = 1) {
-    Logger.info(chalk.blue('GitHubHelper: '), `getting repos for ${orgName} with page ${page}`);
+  getRepos(orgName) {
+    Logger.info(chalk.blue('GitHubHelper: '), `getting repos for ${orgName}`);
 
     return new Promise((resolve, reject) => {
-      const url = 'https://api.github.com/orgs/' + orgName + '/repos?per_page=100&page=' + page;
-      const options = {
-        headers: {
-          'User-Agent': 'MichaelKohler/mozilla-github-watcher',
-          'Accept': 'application/vnd.github.v3+json'
-        }
-      };
+      function fetchPage(page, repos) {
+        Logger.info(chalk.blue('GitHubHelper: '), `getting page ${page}`);
 
-      fetch(url, options).then((res) => {
-        return res.json();
-      }).then((repositories) => {
-        Logger.info(chalk.blue('GitHubHelper: '), `got ${repositories.length} new repositories`);
-        this.repos = this.repos.concat(repositories);
-        resolve(repositories.length === 100);
-      }).catch((err) => {
-        reject(err);
-      });
-    }).then((hasMore) => {
-      if (hasMore) {
-        Logger.info(chalk.blue('GitHubHelper: '), 'getting more..');
-        this.getRepos(orgName, ++page);
-      } else {
-        console.log(this.repos);
-        return Promise.resolve(this.repos);
+        const url = `https://api.github.com/orgs/${orgName}/repos?per_page=100&page=${page}`;
+        const options = {
+          headers: {
+            'User-Agent': 'MichaelKohler/mozilla-github-watcher',
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        };
+
+        fetch(url, options).then((res) => {
+          return res.json();
+        }).then((repositories) => {
+          Logger.info(chalk.blue('GitHubHelper: '), `got ${repositories.length} repositories`);
+          repos = repos.concat(repositories);
+          if (repositories && repositories.length === 100) {
+            Logger.info(chalk.blue('GitHubHelper: '), 'we need to get more!');
+            fetchPage(++page, repos);
+          } else {
+            resolve(repos);
+          }
+        }).catch((err) => {
+          reject(err);
+        });
       }
-    }).catch((err) => {
-      Logger.error(chalk.blue('GitHubHelper:'), err);
-      return Promise.reject([]);
+
+      fetchPage(1, this.repos);
     });
   }
 }
