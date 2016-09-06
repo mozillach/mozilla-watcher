@@ -44,6 +44,7 @@ class Watcher {
    */
   checkDifference(repositories) {
     return new Promise((resolve, reject) => {
+      // TODO: actually check the difference..
       resolve(['im new']);
     });
   }
