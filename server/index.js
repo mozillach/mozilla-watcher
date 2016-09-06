@@ -6,8 +6,8 @@ let Watcher = require('./watcher');
 
 let watcher = new Watcher();
 
-const REPO_NAME = 'mozilla';
+const REPO_NAME = 'MichaelKohler';
 
-watcher.discoverNewRepository(REPO_NAME).then((newRepositories) => {
+watcher.discoverNewRepositories(REPO_NAME).then((newRepositories) => {
   Logger.success(chalk.green('Index: '), 'Difference was', newRepositories);
 });

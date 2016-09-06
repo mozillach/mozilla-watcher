@@ -23,14 +23,14 @@ class Watcher {
    * @param  {String}    orgName  organization name to search for
    * @return {Promise}   Promise that resolves with the difference
    */
-  discoverNewRepository(orgName) {
+  discoverNewRepositories(orgName) {
     return this.githubHelper.getRepos(orgName)
     .then((repositories) => {
       Logger.info(chalk.blue('GitHubHelper: '), repositories.length);
-      const checkDate = new Date();
-      return this.redisHandler.save(checkDate, repositories);
-    }).then((repositories) => {
       return this.checkDifference(repositories);
+    }).then((difference) => {
+      const checkDate = new Date();
+      return this.redisHandler.saveDifference(checkDate, difference);
     }).catch((err) => {
       Logger.error(chalk.blue('Watcher: '), err);
     });
@@ -45,9 +45,6 @@ class Watcher {
   checkDifference(repositories) {
     return new Promise((resolve, reject) => {
       resolve(['im new']);
-    }).then((difference) => {
-      const differenceDate = new Date();
-      return this.redisHandler.saveDifference(differenceDate, difference);
     });
   }
 }
