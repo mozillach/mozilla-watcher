@@ -32,6 +32,24 @@ class RedisHandler {
       resolve(newRepositories);
     });
   }
+
+  /**
+   * Returns the last check date from the redis store
+   *
+   * @return {Promise} Promise which will resolve once the check date is fetched
+   */
+  getLastCheckDate() {
+    debug('start getting last check date..');
+
+    return new Promise((resolve, reject) => {
+      // TODO: actually get real date from DB
+
+      var lastCheckDate = new Date('2016-08-19T23:22:17.491Z');
+      debug('last check date was %s', lastCheckDate);
+
+      resolve(lastCheckDate);
+    });
+  }
 }
 
 module.exports = RedisHandler;

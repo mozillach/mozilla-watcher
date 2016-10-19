@@ -9,14 +9,17 @@ class GitHubHelper {
   }
 
   /**
-   * Queries the GitHub API to get all repositories of a given organization.
-   * We need to traverse since there might be more than 100 repositories..
+   * Queries the GitHub API to get all repositories of a given organization since
+   * a given date. We need to traverse since there might be more than 100 repositories..
    *
-   * @param  {String} orgName organization name to query
-   * @return {Promise}        Promise which resolves with all repositories found
+   * @param  {String} orgName       organization name to query
+   * @param  {String} lastCheckDate organization name to query
+   * @return {Promise}              Promise which resolves with all repositories found
    */
-  getRepos(orgName) {
+  getNewRepos(orgName, lastCheckDate) {
     debug(`getting repos for ${orgName}`);
+
+    this.latestRunDate = new Date();
 
     return new Promise((resolve, reject) => {
       function fetchPage(page, repos) {
@@ -50,6 +53,15 @@ class GitHubHelper {
 
       fetchPage(1, this.repos);
     });
+  }
+
+  /**
+   * Returns the last scan date
+   *
+   * @return {Date} date of the last scan
+   */
+  getLatestRunStartDate() {
+    return this.latestRunDate;
   }
 }
 

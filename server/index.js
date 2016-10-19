@@ -1,12 +1,28 @@
 'use strict';
 
 const debug = require('debug')('index');
-const Watcher = require('./watcher');
+const GitHubHelper = require('./github-helper');
+const RedisHandler = require('./redis-handler');
 
-const watcher = new Watcher();
+const githubHelper = new GitHubHelper();
+const redisHandler = new RedisHandler();
+
 const REPO_NAME = 'mozillach';
 
-watcher.discoverNewRepositories(REPO_NAME)
+redisHandler.getLastCheckDate()
+.then((lastCheckDate) => {
+  return githubHelper.getNewRepos(REPO_NAME, lastCheckDate);
+})
 .then((newRepositories) => {
-  debug('Difference was', newRepositories);
-});
+  debug(`got ${newRepositories.length} new repositories`);
+
+  let latestRunDate = githubHelper.getLatestRunStartDate();
+
+  return redisHandler.saveDifference(latestRunDate, newRepositories);
+})
+.then((difference) => {
+  debug('All done!', difference);
+})
+.catch((err) => {
+  debug(err);
+});;
