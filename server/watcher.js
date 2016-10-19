@@ -11,7 +11,7 @@ const RedisHandler = require('./redis-handler');
  */
 class Watcher {
   constructor() {
-    Logger.info(chalk.blue('Watcher: '), 'initializing..');
+    Logger.info(chalk.cyan('Watcher: '), 'initializing..');
     this.redisHandler = new RedisHandler();
     this.githubHelper = new GitHubHelper();
   }
@@ -26,13 +26,13 @@ class Watcher {
   discoverNewRepositories(orgName) {
     return this.githubHelper.getRepos(orgName)
     .then((repositories) => {
-      Logger.info(chalk.blue('GitHubHelper: '), repositories.length);
+      Logger.info(chalk.cyan('Watcher: '), `got ${repositories.length} repositories in total`);
       return this.checkDifference(repositories);
     }).then((difference) => {
       const checkDate = new Date();
       return this.redisHandler.saveDifference(checkDate, difference);
     }).catch((err) => {
-      Logger.error(chalk.blue('Watcher: '), err);
+      Logger.error(chalk.cyan('Watcher: '), err);
     });
   }
 
