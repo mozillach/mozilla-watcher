@@ -1,8 +1,8 @@
 'use strict';
 
-const chalk = require('chalk');
+const debug = require('debug')('watcher');
+
 const GitHubHelper = require('./github-helper');
-const Logger = require('./logger');
 const RedisHandler = require('./redis-handler');
 
 /**
@@ -11,7 +11,8 @@ const RedisHandler = require('./redis-handler');
  */
 class Watcher {
   constructor() {
-    Logger.info(chalk.cyan('Watcher: '), 'initializing..');
+    debug('initializing..');
+
     this.redisHandler = new RedisHandler();
     this.githubHelper = new GitHubHelper();
   }
@@ -26,13 +27,15 @@ class Watcher {
   discoverNewRepositories(orgName) {
     return this.githubHelper.getRepos(orgName)
     .then((repositories) => {
-      Logger.info(chalk.cyan('Watcher: '), `got ${repositories.length} repositories in total`);
+      debug(`got ${repositories.length} repositories in total`);
+
       return this.checkDifference(repositories);
     }).then((difference) => {
       const checkDate = new Date();
+
       return this.redisHandler.saveDifference(checkDate, difference);
     }).catch((err) => {
-      Logger.error(chalk.cyan('Watcher: '), err);
+      debug(err);
     });
   }
 

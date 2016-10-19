@@ -1,13 +1,12 @@
 'use strict';
 
-let chalk = require('chalk');
-let Logger = require('./logger');
-let Watcher = require('./watcher');
+const debug = require('debug')('index');
+const Watcher = require('./watcher');
 
-let watcher = new Watcher();
-
+const watcher = new Watcher();
 const REPO_NAME = 'mozillach';
 
-watcher.discoverNewRepositories(REPO_NAME).then((newRepositories) => {
-  Logger.success(chalk.green('Index: '), 'Difference was', newRepositories);
+watcher.discoverNewRepositories(REPO_NAME)
+.then((newRepositories) => {
+  debug('Difference was', newRepositories);
 });

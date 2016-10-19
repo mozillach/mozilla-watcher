@@ -1,15 +1,14 @@
 'use strict';
 
-const chalk = require('chalk');
+const debug = require('debug')('Redis');
 const redis = require('redis');
-const Logger = require('./logger');
 
 /**
  * Handler for Redis which manages the connection and saving the data.
  */
 class RedisHandler {
   constructor() {
-    Logger.info(chalk.yellow('RedisHandler: '), 'initializing..');
+    debug('initializing..');
   }
 
   /**
@@ -20,16 +19,16 @@ class RedisHandler {
    * @return {Promise}                   Promise which will resolve once the data is saved
    */
   saveDifference(lastCheck, newRepositories) {
-    Logger.info(chalk.yellow('RedisHandler: '), 'start saving difference..');
-    Logger.info(chalk.yellow('RedisHandler: '), 'difference was at', lastCheck);
-    Logger.info(chalk.yellow('RedisHandler: '), 'with data', newRepositories);
+    debug('start saving difference..');
+    debug('difference was at', lastCheck);
+    debug('with data', newRepositories);
 
     return new Promise((resolve, reject) => {
-      Logger.info(chalk.yellow('RedisHandler: '), 'saving difference data to redis');
+      debug('saving difference data to redis');
 
       // TODO: actually save it..
 
-      Logger.success(chalk.yellow('RedisHandler: '), 'finished saving latest differences');
+      debug('finished saving latest differences');
       resolve(newRepositories);
     });
   }

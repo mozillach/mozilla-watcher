@@ -4,7 +4,7 @@
   "description": "Watches the mozilla github organisation and sends push notifications for new repositories",
   "main": "index.js",
   "dependencies": {
-    "chalk": "^1.1.3",
+    "debug": "^2.2.0",
     "node-fetch": "^1.5.2",
     "redis": "^2.6.0-2"
   },
