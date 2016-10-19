@@ -1,8 +1,8 @@
 'use strict';
 
 const debug = require('debug')('index');
-const GitHubHelper = require('./github-helper');
-const RedisHandler = require('./redis-handler');
+const GitHubHelper = require('./lib/github-helper');
+const RedisHandler = require('./lib/redis-handler');
 
 const githubHelper = new GitHubHelper();
 const redisHandler = new RedisHandler();
