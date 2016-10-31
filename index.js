@@ -2,13 +2,13 @@
 
 const debug = require('debug')('index');
 const GitHubHelper = require('./lib/github-helper');
-const RedisHandler = require('./lib/redis-handler');
+const StorageHandler = require('./lib/storage-handler');
 
 const REPO_NAME = 'mozillach';
 const githubHelper = new GitHubHelper(REPO_NAME);
-const redisHandler = new RedisHandler();
+const storageHandler = new StorageHandler();
 
-redisHandler.getLastCheckDate()
+storageHandler.getLastCheckDate()
 .then((lastCheckDate) => {
   return githubHelper.getNewRepos(lastCheckDate);
 })
@@ -17,7 +17,7 @@ redisHandler.getLastCheckDate()
 
   let latestRunDate = githubHelper.getLatestRunStartDate();
 
-  return redisHandler.saveDifference(latestRunDate, newRepositories);
+  return storageHandler.saveDifference(latestRunDate, newRepositories);
 })
 .then((difference) => {
   debug('All done!', difference);
