@@ -1,21 +1,14 @@
-Mozilla GitHub Watcher
+Mozilla Watcher
 =====
 
-This script watches the mozilla.org GitHub organization and saves the newly discovered repositories to a Redis instance.
-
-Further there is a website to initialize a Service Worker to send the Push Notifications for new repositories discovered.
-
-Website
------
-
-Check this out at ....
+This script watches the mozilla GitHub organization and saves the newly discovered repositories.
 
 Setting up the server
 -----
 
-First install [Redis](http://redis.io/) and [Node](http://nodejs.org/) on your server.
+First install [Node](http://nodejs.org/) on your server.
 
-Then you can run the server side script with
+Then you can start the server with:
 
 ```
 $ git clone <URL>
@@ -23,15 +16,13 @@ $ npm install
 $ npm start
 ```
 
-You could also use forever or similar tools to keep the server restarting after errors.
+Now you can access the website for it at ```localhost:8000```.
 
-Setting up the website
+Running the fetch script
 ------
 
-There is nothing to do, you just need a local server serving the index.html.
+The fetch script should be run regularly to make sure the website always has the latest information.
 
 ```
-$ python -m SimpleHTTPServer
+$ node fetch.js
 ```
-
-Now the index.html should be served on ```localhost:8000```.
