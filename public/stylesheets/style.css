@@ -1,0 +1,16 @@
+body {
+  font-size: 14px;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #002147;
+  color: #FFFFFF;
+  padding: 15px;
+}
+
+table {
+  width: 100%;
+}
+
+thead tr th {
+  text-align: left;
+  border-bottom: 1px solid;
+}

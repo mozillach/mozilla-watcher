@@ -16,7 +16,7 @@ $ npm install
 $ npm start
 ```
 
-Now you can access the website for it at ```localhost:8000```.
+Now you can access the website for it at ```localhost:3000```.
 
 Running the fetch script
 ------
@@ -24,5 +24,5 @@ Running the fetch script
 The fetch script should be run regularly to make sure the website always has the latest information.
 
 ```
-$ DEBUG=* node --harmony-async-await fetch.js
+$ npm run fetch
 ```

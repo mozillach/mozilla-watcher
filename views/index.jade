@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+
+  h2 Newest Repositories
+  table
+    thead
+      tr
+        th Created at
+        th Name
+        th Organization
+        th Description
+    tbody
+    - each repo in repos
+      tr
+        td= new Date(repo.created_at)
+        td= repo.name
+        td= repo.owner.login
+        td= repo.description
+  
+  h2 Latest Wiki edits
+  table
+    thead
+      tr
+        th Page
+        th Which action was done?
+    tbody
+    - each edit in wikiEdits
+      tr
+        td= edit.title
+        td= edit.type
