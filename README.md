@@ -6,7 +6,7 @@ This script watches the mozilla GitHub organization and saves the newly discover
 Setting up the server
 -----
 
-First install [Node](http://nodejs.org/) on your server.
+First install [Node](http://nodejs.org/) 7 on your server.
 
 Then you can start the server with:
 
@@ -24,5 +24,5 @@ Running the fetch script
 The fetch script should be run regularly to make sure the website always has the latest information.
 
 ```
-$ node fetch.js
+$ DEBUG=* node --harmony-async-await fetch.js
 ```

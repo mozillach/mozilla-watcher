@@ -8,20 +8,16 @@ const REPO_NAME = 'mozillach';
 const githubHelper = new GitHubHelper(REPO_NAME);
 const storageHandler = new StorageHandler();
 
-storageHandler.getLastCheckDate()
-.then((lastCheckDate) => {
-  return githubHelper.getNewRepos(lastCheckDate);
-})
-.then((newRepositories) => {
+async function fetchAll() {
+  let lastCheckDate = await storageHandler.getLastCheckDate();
+  let newRepositories = await githubHelper.getNewRepos(lastCheckDate);
   debug(`got ${newRepositories.length} new repositories`);
 
   let latestRunDate = githubHelper.getLatestRunStartDate();
+  let difference = await storageHandler.saveDifference(latestRunDate, newRepositories);
 
-  return storageHandler.saveDifference(latestRunDate, newRepositories);
-})
-.then((difference) => {
-  debug('All done!', difference);
-})
-.catch((err) => {
-  debug(err);
-});;
+  debug('All done!');
+}
+
+debug('Starting everything...');
+fetchAll();
