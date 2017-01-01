@@ -20,13 +20,6 @@ block content
         td= repo.description
   
   h2 Latest Wiki edits
-  table
-    thead
-      tr
-        th Page
-        th Which action was done?
-    tbody
+  ul
     - each edit in wikiEdits
-      tr
-        td= edit.title
-        td= edit.type
+      li= edit
