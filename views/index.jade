@@ -15,11 +15,17 @@ block content
     - each repo in repos
       tr
         td= new Date(repo.created_at)
-        td= repo.name
-        td= repo.owner.login
+        td
+          a(href='' + repo.html_url, target='_blank')
+            = repo.name
+        td
+          a(href='' + repo.owner.html_url, target='_blank')
+            = repo.owner.login
         td= repo.description
   
   h2 Latest Wiki edits
   ul
     - each edit in wikiEdits
-      li= edit
+      li
+        a(href='https://wiki.mozilla.org/'+edit, target='_blank')
+          = edit
