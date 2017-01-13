@@ -24,8 +24,13 @@ block content
         td= repo.description
   
   h2 Latest Wiki edits
-  ul
+  table
     - each edit in wikiEdits
-      li
-        a(href='https://wiki.mozilla.org/'+edit, target='_blank')
-          = edit
+      tr
+        td
+          a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
+            = edit.title
+        td
+          = new Date(edit.timestamp)
+        td
+          = edit.user
