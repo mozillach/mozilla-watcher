@@ -10,6 +10,7 @@
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "dom-storage": "^2.0.2",
     "express": "~4.14.0",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
