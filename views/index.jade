@@ -14,7 +14,7 @@ block content
     tbody
     - each repo in repos
       tr
-        td= new Date(repo.created_at)
+        td= new Date(repo.created_at).toLocaleDateString()
         td
           a(href='' + repo.html_url, target='_blank')
             = repo.name
@@ -25,12 +25,16 @@ block content
   
   h2 Latest Wiki edits
   table
+    thead
+      tr
+        th Changed at
+        th Title
+        th User
+    tbody
     - each edit in wikiEdits
       tr
+        td= new Date(edit.timestamp).toLocaleString()
         td
           a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
             = edit.title
-        td
-          = new Date(edit.timestamp)
-        td
-          = edit.user
+        td= edit.user
