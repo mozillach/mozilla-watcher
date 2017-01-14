@@ -24,5 +24,5 @@ Running the fetch script
 The fetch script should be run regularly to make sure the website always has the latest information.
 
 ```
-$ npm run fetch
+$ npm run fetch -- --username GITHUBUSERNAME --token GITHUBTOKEN
 ```

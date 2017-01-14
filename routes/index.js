@@ -8,7 +8,8 @@ const WIKI_KEY = 'WIKI_EDITS';
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  const repos = storageHandler.getStorageItem(REPO_KEY);
+  const allRepos = storageHandler.getStorageItem(REPO_KEY);
+  const repos = allRepos.slice(0, 100);
   const wikiEdits = storageHandler.getStorageItem(WIKI_KEY);
 
   res.render('index', {
