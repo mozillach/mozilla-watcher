@@ -8,13 +8,18 @@ const WIKI_KEY = 'WIKI_EDITS';
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  const allRepos = storageHandler.getStorageItem(REPO_KEY);
-  const repos = allRepos.slice(0, 100);
+  const repos = storageHandler.getStorageItem(REPO_KEY).slice(0, 100);
+
+  const updatedRepos = storageHandler.getStorageItem(REPO_KEY).sort((a, b) => {
+    return new Date(b.updated_at) - new Date(a.updated_at);
+  }).slice(0, 100);
+
   const wikiEdits = storageHandler.getStorageItem(WIKI_KEY);
 
   res.render('index', {
     title: 'What is happening inside Mozilla?',
     repos,
+    updatedRepos,
     wikiEdits
   });
 });
