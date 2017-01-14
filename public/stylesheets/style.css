@@ -1,7 +1,14 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-size: 14px;
   font-family: 'Fira Sans', sans-serif;
-  padding: 30px;
+  margin: 0px;
+  color: #4D4E53;
+  background-color: #D7D3C8;
 }
 
 h1 {
@@ -40,4 +47,68 @@ th {
 a {
   color: #4d8a9c;
   text-decoration: none;
+}
+
+a:hover, a:visited {
+  color: #22505d;
+}
+
+@media only screen and (max-device-width : 768px) {
+  header {
+    display: none;
+  }
+}
+
+header, footer {
+  overflow: hidden;
+  height: 60px;
+  background-color: #4D4E53;
+  color: #FFF;
+  padding-left: 30px;
+}
+
+footer {
+  height: 50px;
+}
+
+nav {
+  display: inline-block;
+}
+
+nav ul {
+  display: inline-flex;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin-right: 50px;
+  line-height: 30px;
+  font-size: 1.1em;
+}
+
+nav ul li:last-child {
+  margin-left: 250px;
+  margin-right: 0px;
+}
+
+nav a, nav a:hover, nav a:visited {
+  color: inherit;
+}
+
+#tabzilla { position: relative; float: right; }
+
+#tabzilla a { position: relative; display: block; width: 147px; height: 37px; text-indent: 120%; white-space: nowrap; overflow: hidden; background-image: url(https://www.mozilla.org/media/img/tabzilla/tabzilla-static.png); background-repeat: no-repeat; z-index: 2; }
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (min-resolution: 1.5dppx) { #tabzilla a { background-image: url(https://www.mozilla.org/media/img/tabzilla/tabzilla-static-high-res.png); -webkit-background-size: 147px 37px; background-size: 147px 37px; } }
+
+#tabzilla:before { position: absolute; display: block; left: 28px; top: 0; width: 88px; height: 26px; content: ''; background-color: transparent; z-index: 1; }
+
+@media only screen and (max-device-width : 1024px) {
+  #tabzilla {
+    display: none;
+  }
+}
+
+.container {
+  padding: 0px 30px 30px 30px;
 }

@@ -1,40 +1,58 @@
 extends layout
 
 block content
-  h1= title
-
-  h2 Newest Repositories
-  table
-    thead
-      tr
-        th Created at
-        th Name
-        th Organization
-        th Description
-    tbody
-    - each repo in repos
-      tr
-        td= new Date(repo.created_at).toLocaleDateString()
-        td
-          a(href='' + repo.html_url, target='_blank')
-            = repo.name
-        td
-          a(href='' + repo.owner.html_url, target='_blank')
-            = repo.owner.login
-        td= repo.description
+  header
+    nav
+      ul
+        li
+          a(href='#repos') Newest Repositories
+        li
+          a(href='#wiki') Latest Wiki Edits
+        li
+          a(href='https://github.com/MichaelKohler/mozilla-watcher/') Contribute to this page
+    div#tabzilla
+      a(href='https://www.mozilla.org/') Mozilla
   
-  h2 Latest Wiki edits
-  table
-    thead
-      tr
-        th Changed at
-        th Title
-        th User
-    tbody
-    - each edit in wikiEdits
-      tr
-        td= new Date(edit.timestamp).toLocaleString()
-        td
-          a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
-            = edit.title
-        td= edit.user
+  .container
+    h1= title
+    
+    p This is a prototype. This will not update automatically for now. See&nbsp;
+      a(href='https://github.com/MichaelKohler/mozilla-watcher/issues/4') https://github.com/MichaelKohler/mozilla-watcher/issues/4
+
+    h2#repos Newest Repositories
+    table
+      thead
+        tr
+          th Created at
+          th Name
+          th Organization
+          th Description
+      tbody
+      - each repo in repos
+        tr
+          td= new Date(repo.created_at).toLocaleDateString()
+          td
+            a(href='' + repo.html_url, target='_blank')
+              = repo.name
+          td
+            a(href='' + repo.owner.html_url, target='_blank')
+              = repo.owner.login
+          td= repo.description
+
+    h2#wiki Latest Wiki edits
+    table
+      thead
+        tr
+          th Changed at
+          th Title
+          th User
+      tbody
+      - each edit in wikiEdits
+        tr
+          td= new Date(edit.timestamp).toLocaleString()
+          td
+            a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
+              = edit.title
+          td= edit.user
+  footer
+    p &copy; 2017 Mozilla | Mozilla is a global non-profit dedicated to putting you in control of your online experience and shaping the future of the web for the public good. 
