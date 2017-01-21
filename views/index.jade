@@ -29,16 +29,16 @@ block content
           th Organization
           th Description
       tbody
-      - each repo in repos
-        tr
-          td= new Date(repo.created_at).toLocaleDateString()
-          td
-            a(href='' + repo.html_url, target='_blank')
-              = repo.name
-          td
-            a(href='' + repo.owner.html_url, target='_blank')
-              = repo.owner.login
-          td= repo.description
+        - each repo in repos
+          tr
+            td= new Date(repo.created_at).toLocaleDateString()
+            td
+              a(href='' + repo.html_url, target='_blank')
+                = repo.name
+            td
+              a(href='' + repo.owner.html_url, target='_blank')
+                = repo.owner.login
+            td= repo.description
 
     h2#updatedRepos Updated Repositories
     table
@@ -49,16 +49,16 @@ block content
           th Organization
           th Description
       tbody
-      - each repo in updatedRepos
-        tr
-          td= new Date(repo.updated_at).toLocaleDateString()
-          td
-            a(href='' + repo.html_url, target='_blank')
-              = repo.name
-          td
-            a(href='' + repo.owner.html_url, target='_blank')
-              = repo.owner.login
-          td= repo.description
+        - each repo in updatedRepos
+          tr
+            td= new Date(repo.updated_at).toLocaleDateString()
+            td
+              a(href='' + repo.html_url, target='_blank')
+                = repo.name
+            td
+              a(href='' + repo.owner.html_url, target='_blank')
+                = repo.owner.login
+            td= repo.description
 
     h2#wiki Latest Wiki edits
     table
@@ -68,12 +68,12 @@ block content
           th Title
           th User
       tbody
-      - each edit in wikiEdits
-        tr
-          td= new Date(edit.timestamp).toLocaleString()
-          td
-            a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
-              = edit.title
-          td= edit.user
+        - each edit in wikiEdits
+          tr
+            td= new Date(edit.timestamp).toLocaleString()
+            td
+              a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
+                = edit.title
+            td= edit.user
   footer
     p &copy; 2017 Mozilla | Mozilla is a global non-profit dedicated to putting you in control of your online experience and shaping the future of the web for the public good. 
