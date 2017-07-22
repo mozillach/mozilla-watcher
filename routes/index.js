@@ -21,7 +21,6 @@ router.get('/', (req, res, next) => {
   const wikiEdits = storageHandler.getStorageItem(WIKI_KEY);
 
   res.render('index', {
-    title: 'What is happening inside Mozilla?',
     repos,
     updatedRepos,
     wikiEdits
