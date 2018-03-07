@@ -44,6 +44,7 @@
   "mozilla-bolivia",
   "mozilla-cit",
   "mozilla-iam",
+  "mozilla-iot",
   "mozilla-it",
   "mozilla-japan",
   "mozilla-jetpack",
@@ -78,7 +79,9 @@
   "mozillayvr",
   "moziot",
   "mozmar",
+  "mozmeao",
   "moztn",
   "moztw",
+  "Pocket",
   "web-ext-experiments"
 ]
