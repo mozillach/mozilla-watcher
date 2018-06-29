@@ -8,6 +8,12 @@
   src: url("../fonts/ZillaSlabHighlight-Bold.woff2");
 }
 
+:root {
+  --brand-color: #00458b;
+  --link-color: #0060df;
+  --link-hover-color: #003eaa;
+}
+
 html {
   margin: 0;
   padding: 0;
@@ -15,7 +21,7 @@ html {
 
 body {
   font-size: 14px;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Zilla Slab', sans-serif;
   margin: 0px;
   color: #4D4E53;
   background-color: #FFF;
@@ -44,7 +50,7 @@ table {
 }
 
 tr {
-  border-bottom: 1px solid #b4b5b9;
+  border-bottom: 1px solid #e7e5e2;
 }
 
 th tr {
@@ -57,17 +63,17 @@ table td, table th {
 
 th {
   text-align: left;
-  background-color: #558194;
+  background-color: var(--brand-color);
   color: #FFF;
 }
 
 a {
-  color: #558194;
+  color: var(--link-color);
   text-decoration: none;
 }
 
 a:hover, a:visited {
-  color: #558194;
+  color: var(--link-hover-color);
 }
 
 @media only screen and (max-device-width : 768px) {
@@ -79,7 +85,7 @@ a:hover, a:visited {
 header {
   overflow: hidden;
   height: 60px;
-  background-color: #558194;
+  background-color: #00458b;
   color: #FFF;
   padding-left: 30px;
 }
