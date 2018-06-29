@@ -7,18 +7,14 @@ block content
         li
           a(href='#repos') Newest Repositories
         li
-          a(href='#updatedRepos') Updated Repositories
-        li
           a(href='#wiki') Latest Wiki Edits
         li
-          a(href='https://github.com/mozillach/mozilla-watcher/') Contribute to this page
+          a(href='https://github.com/mozillach/mozilla-watcher/') Contribute
 
   .container
     h1 What is happening inside&nbsp;
       span.logo mozilla
       span &nbsp;?
-
-    p This list is automatically updated every hour.
 
     h2#repos Newest Repositories
     table
@@ -32,26 +28,6 @@ block content
         each repo in repos
           tr
             td= new Date(repo.created_at).toLocaleDateString()
-            td
-              a(href='' + repo.html_url, target='_blank')
-                = repo.name
-            td
-              a(href='' + repo.owner.html_url, target='_blank')
-                = repo.owner.login
-            td= repo.description
-
-    h2#updatedRepos Updated Repositories
-    table
-      thead
-        tr
-          th Updated
-          th Name
-          th Organization
-          th Description
-      tbody
-        each repo in updatedRepos
-          tr
-            td= new Date(repo.updated_at).toLocaleDateString()
             td
               a(href='' + repo.html_url, target='_blank')
                 = repo.name
