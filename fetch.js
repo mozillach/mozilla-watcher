@@ -1,6 +1,6 @@
 'use strict';
 
-const debug = require('debug')('index');
+const debug = require('debug')('fetch');
 const args = require('optimist').argv;
 const GitHubHelper = require('./lib/github-helper');
 const StorageHandler = require('./lib/storage-handler');

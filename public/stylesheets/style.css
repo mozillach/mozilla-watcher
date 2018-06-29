@@ -76,16 +76,12 @@ a:hover, a:visited {
   }
 }
 
-header, footer {
+header {
   overflow: hidden;
   height: 60px;
   background-color: #558194;
   color: #FFF;
   padding-left: 30px;
-}
-
-footer {
-  height: 50px;
 }
 
 nav {

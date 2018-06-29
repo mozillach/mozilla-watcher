@@ -3,19 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "fetch": "DEBUG=* node --harmony-async-await fetch.js"
+    "start": "DEBUG=mozilla-github-watcher* node ./bin/www",
+    "fetch": "DEBUG=* node fetch.js"
   },
   "dependencies": {
-    "body-parser": "~1.15.2",
+    "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
+    "debug": "^3.1.0",
     "dom-storage": "^2.0.2",
-    "express": "~4.14.0",
-    "jade": "~1.11.0",
-    "morgan": "~1.7.0",
-    "node-fetch": "^1.6.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "node-fetch": "^2.1.2",
     "optimist": "^0.6.1",
-    "serve-favicon": "~2.3.0"
+    "pug": "^2.0.3",
+    "serve-favicon": "^2.5.0"
   }
 }
