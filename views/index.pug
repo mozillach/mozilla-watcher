@@ -27,7 +27,9 @@ block content
       tbody
         each repo in repos
           tr
-            td= new Date(repo.created_at).toLocaleDateString()
+            td
+              time(datetime=repo.created_at)
+                = new Date(repo.created_at).toLocaleDateString()
             td
               a(href='' + repo.html_url, target='_blank')
                 = repo.name
@@ -46,7 +48,9 @@ block content
       tbody
         each edit in wikiEdits
           tr
-            td= new Date(edit.timestamp).toLocaleString()
+            td
+              time(datetime=edit.timestamp)
+                = new Date(edit.timestamp).toLocaleString()
             td
               a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
                 = edit.title
