@@ -1,12 +1,12 @@
 Mozilla Watcher
 =====
 
-This script watches the mozilla GitHub organization and saves the newly discovered repositories.
+This script watches the Mozilla GitHub organization and saves the newly discovered repositories.
 
 Setting up the server
 -----
 
-First install [Node](http://nodejs.org/) 7 on your server.
+First, install [Node](http://nodejs.org/) 7 on your server.
 
 Then you can start the server with:
 
