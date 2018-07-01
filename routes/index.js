@@ -11,7 +11,7 @@ const MAX_RETURN_ROWS_NEW = 200;
 router.get('/', (req, res, next) => {
   const repos = storageHandler.getStorageItem(REPO_KEY).sort((a, b) => {
     return new Date(b.created_at) - new Date(a.created_at);
-  }).slice(0, MAX_RETURN_ROWS_NEW);;
+  }).slice(0, MAX_RETURN_ROWS_NEW);
 
   const wikiEdits = storageHandler.getStorageItem(WIKI_KEY);
 
