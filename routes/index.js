@@ -7,9 +7,9 @@ const REPO_KEY = 'REPOSITORIES';
 const WIKI_KEY = 'WIKI_EDITS';
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  const repos = storageHandler.getStorageItem(REPO_KEY);
-  const wikiEdits = storageHandler.getStorageItem(WIKI_KEY);
+router.get('/', async (req, res, next) => {
+  const repos = await storageHandler.getStorageItem(REPO_KEY);
+  const wikiEdits = await storageHandler.getStorageItem(WIKI_KEY);
 
   res.render('index', {
     repos,

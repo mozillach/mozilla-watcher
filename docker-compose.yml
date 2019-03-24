@@ -1,14 +1,23 @@
 version: '3'
 services:
+  redis:
+    image: redis
+    container_name: cache
+    expose:
+      - 6379
+
   app:
     build: ./
     volumes:
       - ./:/app
     ports:
       - 3000:3000
+    links:
+      - redis
     environment:
       - NODE_ENV=development
-      - GITHUB_USERNAME=${GITHUB_USENAME}
+      - REDIS_URL=redis://cache
+      - GITHUB_USERNAME=${GITHUB_USERNAME}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
     command:
       sh -c 'npm run fetch && npm run start:server'
