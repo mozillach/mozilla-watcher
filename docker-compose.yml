@@ -17,7 +17,6 @@ services:
     environment:
       - NODE_ENV=development
       - REDIS_URL=redis://cache
-      - GITHUB_USERNAME=${GITHUB_USERNAME}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
     command:
       sh -c 'npm run start:server'

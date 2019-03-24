@@ -14,7 +14,7 @@ Then you can start the server with the following command. Make sure to replace t
 ```
 $ git clone <URL>
 $ npm install
-$ GITHUB_USERNAME=<yourGitHubUsername> GITHUB_TOKEN=<yourGitHubToken> docker-compose up
+$ GITHUB_TOKEN=<yourGitHubToken> docker-compose up
 ```
 
 Now you can access the website for it at ```localhost:3000```.
