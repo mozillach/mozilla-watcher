@@ -1,6 +1,6 @@
 {
   "name": "mozilla-github-watcher",
-  "version": "0.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "start": "DEBUG=mozilla-github-watcher* node ./bin/www",
