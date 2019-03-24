@@ -8,12 +8,12 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "cookie-parser": "~1.4.3",
-    "debug": "^3.1.0",
+    "cookie-parser": "^1.4.4",
+    "debug": "^4.1.1",
     "dom-storage": "^2.0.2",
-    "express": "^4.16.3",
-    "morgan": "^1.9.0",
-    "node-fetch": "^2.1.2",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "node-fetch": "^2.3.0",
     "optimist": "^0.6.1",
     "pug": "^2.0.3",
     "serve-favicon": "^2.5.0"
