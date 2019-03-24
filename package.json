@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "docker-compose up",
-    "start:server": "DEBUG=mozilla-github-watcher* node ./bin/www",
+    "start:server": "DEBUG=mozilla-github-watcher* node index.js",
     "fetch": "DEBUG=mozilla-github-watcher* node ./lib/fetch.js"
   },
   "dependencies": {
@@ -13,9 +13,9 @@
     "debug": "^4.1.1",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
+    "node-cron": "^2.0.3",
     "node-fetch": "^2.3.0",
     "pug": "^2.0.3",
-    "redis": "^2.8.0",
-    "serve-favicon": "^2.5.0"
+    "redis": "^2.8.0"
   }
 }

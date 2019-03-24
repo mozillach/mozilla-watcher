@@ -1,57 +1,46 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
-const app = require('../app');
 const debug = require('debug')('mozilla-github-watcher:server');
 const http = require('http');
-
-/**
- * Get port from environment and store in Express.
- */
+const cron = require('node-cron');
+const app = require('./app');
+const fetch = require('./lib/fetch');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
 const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
+debug('registering cronjob to run every hour at minute 23..');
+cron.schedule('0 23 * * * *', () => {
+  fetch.fetchAll()
+    .catch((err) => {
+      debug('CRONJOB_FETCH_FAILED', err);
+    });
+});
+
+fetch.fetchAll()
+  .catch((err) => {
+    debug('INITIAL_FETCH_FAILED', err);
+  });
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
 
   if (isNaN(port)) {
-    // named pipe
     return val;
   }
 
   if (port >= 0) {
-    // port number
     return port;
   }
 
   return false;
 }
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -62,7 +51,6 @@ function onError(error) {
     ? 'Pipe ' + port
     : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
@@ -76,10 +64,6 @@ function onError(error) {
       throw error;
   }
 }
-
-/**
- * Event listener for HTTP server "listening" event.
- */
 
 function onListening() {
   const addr = server.address();
