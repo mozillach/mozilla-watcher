@@ -1,0 +1,14 @@
+version: '3'
+services:
+  app:
+    build: ./
+    volumes:
+      - ./:/app
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - GITHUB_USERNAME=${GITHUB_USENAME}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    command:
+      sh -c 'npm run fetch && npm run start:server'

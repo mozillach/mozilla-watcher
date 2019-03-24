@@ -3,8 +3,9 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=mozilla-github-watcher* node ./bin/www",
-    "fetch": "DEBUG=* node fetch.js"
+    "start": "docker-compose up",
+    "start:server": "DEBUG=mozilla-github-watcher* node ./bin/www",
+    "fetch": "DEBUG=mozilla-github-watcher* node ./lib/fetch.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -14,7 +15,6 @@
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "node-fetch": "^2.3.0",
-    "optimist": "^0.6.1",
     "pug": "^2.0.3",
     "serve-favicon": "^2.5.0"
   }
