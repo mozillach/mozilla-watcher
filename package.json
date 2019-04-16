@@ -5,7 +5,8 @@
   "scripts": {
     "start": "docker-compose up",
     "start:server": "DEBUG=mozilla-github-watcher* node index.js",
-    "fetch": "DEBUG=mozilla-github-watcher* node ./lib/fetch.js"
+    "fetch": "DEBUG=mozilla-github-watcher* node ./lib/fetch.js",
+    "test": "ava"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -17,5 +18,8 @@
     "node-fetch": "^2.3.0",
     "pug": "^2.0.3",
     "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "ava": "^1.4.1"
   }
 }
