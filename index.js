@@ -16,7 +16,7 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 debug('registering cronjob to run every hour at minute 23..');
-cron.schedule('0 23 * * * *', () => {
+cron.schedule('0 * * * * *', () => {
   fetch.fetchAll()
     .catch((err) => {
       debug('CRONJOB_FETCH_FAILED', err);
