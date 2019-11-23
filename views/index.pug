@@ -11,47 +11,49 @@ block content
         li
           a(href='https://github.com/mozillach/mozilla-watcher/') Contribute
 
+  h1 Latest&nbsp;
+    span.logo mozilla
+    span &nbsp;Project Updates
+
   .container
-    h1 What is happening inside&nbsp;
-      span.logo mozilla
-      span &nbsp;?
-
-    h2#repos Newest Repositories
-    table
-      thead
-        tr
-          th Created
-          th Name
-          th Organization
-          th Description
-      tbody
-        each repo in repos
+    .col
+      h2#repos Newest Repositories
+      table
+        thead
           tr
-            td
-              time(datetime=repo.created_at)
-                = new Date(repo.created_at).toLocaleDateString()
-            td
-              a(href='' + repo.html_url, target='_blank')
-                = repo.name
-            td
-              a(href='' + repo.owner.html_url, target='_blank')
-                = repo.owner.login
-            td= repo.description
+            th Created
+            th Name
+            th Organization
+            th Description
+        tbody
+          each repo in repos
+            tr
+              td
+                time(datetime=repo.created_at)
+                  = new Date(repo.created_at).toLocaleDateString()
+              td
+                a(href='' + repo.html_url, target='_blank')
+                  = repo.name
+              td
+                a(href='' + repo.owner.html_url, target='_blank')
+                  = repo.owner.login
+              td= repo.description
 
-    h2#wiki Latest Wiki edits
-    table
-      thead
-        tr
-          th Changed at
-          th Title
-          th User
-      tbody
-        each edit in wikiEdits
+    .col
+      h2#wiki Latest Wiki edits
+      table
+        thead
           tr
-            td
-              time(datetime=edit.timestamp)
-                = new Date(edit.timestamp).toLocaleString()
-            td
-              a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
-                = edit.title
-            td= edit.user
+            th Changed at
+            th Title
+            th User
+        tbody
+          each edit in wikiEdits
+            tr
+              td
+                time(datetime=edit.timestamp)
+                  = new Date(edit.timestamp).toLocaleString()
+              td
+                a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
+                  = edit.title
+              td= edit.user

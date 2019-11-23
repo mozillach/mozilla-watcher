@@ -1,15 +1,20 @@
 @font-face {
-  font-family: "ZillaSlabHighlight";
-  src: url("../fonts/ZillaSlabHighlight-Regular.woff2");
-}
-
-@font-face {
   font-family: "ZillaSlabHighlightBold";
   src: url("../fonts/ZillaSlabHighlight-Bold.woff2");
 }
 
+@font-face {
+  font-family: 'MetropolisMedium';
+  src: url('../fonts/Metropolis-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Regular.woff2') format('woff2');
+}
+
 :root {
-  --brand-color: #00458b;
+  --brand-color: #000;
   --link-color: #0060df;
   --link-hover-color: #003eaa;
 }
@@ -20,8 +25,8 @@ html {
 }
 
 body {
-  font-size: 14px;
-  font-family: 'Zilla Slab', sans-serif;
+  font-size: 0.7rem;
+  font-family: 'Inter', sans-serif;
   margin: 0px;
   color: #4D4E53;
   background-color: #FFF;
@@ -32,15 +37,25 @@ body {
   color: black;
 }
 
+h1 {
+  margin-top: 30px;
+  text-align: center;
+}
+
 h2 {
   display: inline-block;
-  font-family: 'ZillaSlabHighlightBold', serif;
+  font-family: 'MetropolisMedium', serif;
   font-size: 3rem;
-  color: black;
+  color: var(--brand-color);
 }
 
 h2 {
   margin-top: 50px;
+}
+
+.col {
+  min-width: 48vw;
+  max-width: 48vw;
 }
 
 table {
@@ -65,6 +80,7 @@ th {
   text-align: left;
   background-color: var(--brand-color);
   color: #FFF;
+  font-family: 'MetropolisMedium', serif;
 }
 
 a {
@@ -76,22 +92,20 @@ a:hover, a:visited {
   color: var(--link-hover-color);
 }
 
-@media only screen and (max-device-width : 768px) {
-  header {
-    display: none;
-  }
-}
-
 header {
-  overflow: hidden;
-  height: 60px;
-  background-color: #00458b;
+  height: 50px;
+  background-color: #000;
   color: #FFF;
-  padding-left: 30px;
+  font-family: 'MetropolisMedium', serif;
+  text-align: center;
 }
 
 nav {
   display: inline-block;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 nav ul {
@@ -102,7 +116,6 @@ nav ul {
 
 nav ul li {
   margin-right: 50px;
-  line-height: 30px;
   font-size: 1.1em;
 }
 
@@ -116,4 +129,23 @@ nav a, nav a:hover, nav a:visited {
 
 .container {
   padding: 0px 30px 30px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-device-width : 1100px) {
+  .col {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-device-width : 768px) {
+  header {
+    display: none;
+  }
 }
