@@ -1,22 +1,15 @@
 version: '3'
 services:
-  redis:
-    image: redis
-    container_name: cache
+  db:
+    image: mariadb:latest
+    container_name: watcher-db
+    restart: always
     expose:
-      - 6379
-
-  app:
-    build: ./
-    volumes:
-      - ./:/app
+      - "3306"
     ports:
-      - 3000:3000
-    links:
-      - redis
+      - "3306:3306"
     environment:
-      - NODE_ENV=development
-      - REDIS_URL=redis://cache
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
-    command:
-      sh -c 'npm run start:server'
+      MYSQL_DATABASE: watcher
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: localdevelopment
+      MYSQL_ROOT_PASSWORD: localdevelopment

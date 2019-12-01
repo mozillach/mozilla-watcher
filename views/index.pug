@@ -29,14 +29,14 @@ block content
           each repo in repos
             tr
               td
-                time(datetime=repo.created_at)
-                  = new Date(repo.created_at).toLocaleDateString()
+                time(datetime=repo.creation_date)
+                  = new Date(repo.creation_date).toLocaleDateString()
               td
                 a(href='' + repo.html_url, target='_blank')
                   = repo.name
               td
-                a(href='' + repo.owner.html_url, target='_blank')
-                  = repo.owner.login
+                a(href='' + repo.owner_html_url, target='_blank')
+                  = repo.org
               td= repo.description
 
     .col
@@ -44,16 +44,16 @@ block content
       table
         thead
           tr
-            th Changed at
+            th Changed on
             th Title
             th User
         tbody
           each edit in wikiEdits
             tr
               td
-                time(datetime=edit.timestamp)
-                  = new Date(edit.timestamp).toLocaleString()
+                time(datetime=edit.change_date)
+                  = new Date(edit.change_date).toLocaleDateString()
               td
-                a(href='https://wiki.mozilla.org/' + edit.title, target='_blank')
-                  = edit.title
+                a(href='https://wiki.mozilla.org/' + edit.name, target='_blank')
+                  = edit.name
               td= edit.user
