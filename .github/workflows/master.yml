@@ -1,0 +1,71 @@
+name: Master Deployment
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Dependencies
+      run: npm ci
+    - name: Test
+      run: npm test
+      env:
+        CI: true
+  docker-build:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build Docker
+      run: |
+        docker build -t mozillach/watcher:$GITHUB_SHA .
+      env:
+        CI: true
+    - name: Publish Docker
+      if: github.ref == 'refs/heads/master'
+      env:
+        CI: true
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        docker login -u michaelkohler -p $DOCKER_PASSWORD
+        docker push mozillach/watcher:$GITHUB_SHA
+  kube-deploy:
+    needs: [docker-build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Update deployment file
+      run: |
+        sed -i 's|<TAG>|'${GITHUB_SHA}'|' $GITHUB_WORKSPACE/k8s/deployment.yaml
+    - name: Save DigitalOcean kubeconfig
+      uses: digitalocean/action-doctl@master
+      env:
+        DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      with:
+        args: kubernetes cluster kubeconfig show k8s-michaelkohler-fra-personal > $GITHUB_WORKSPACE/.kubeconfig
+    - name: Deploy to DigitalOcean Kubernetes
+      uses: docker://lachlanevenson/k8s-kubectl
+      with:
+        args: --kubeconfig=/github/workspace/.kubeconfig apply -f /github/workspace//k8s/deployment.yaml
+    - name: Verify deployment
+      uses: docker://lachlanevenson/k8s-kubectl
+      with:
+        args: --kubeconfig=/github/workspace/.kubeconfig rollout status deployment/mozilla-watcher-deployment
