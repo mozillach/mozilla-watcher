@@ -15,15 +15,23 @@
     "cookie-parser": "^1.4.5",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "morgan": "^1.9.1",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "node-cron": "^2.0.3",
     "node-fetch": "^2.6.0",
     "pug": "^2.0.4",
-    "snyk": "^1.316.1"
+    "snyk": "^1.319.2"
   },
   "devDependencies": {
-    "ava": "^2.4.0"
+    "@ava/babel": "^1.0.1",
+    "ava": "^3.8.2"
+  },
+  "ava": {
+    "babel": {
+      "compileAsTests": [
+        "tests/**/*.js"
+      ]
+    }
   },
   "snyk": true
 }
