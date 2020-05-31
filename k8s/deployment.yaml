@@ -48,8 +48,28 @@ spec:
                 secretKeyRef:
                   name: watcher-github
                   key: github
-            - name: CONNECT
+            - name: DB_HOSTNAME
               valueFrom:
                 secretKeyRef:
                   name: watcher
-                  key: connect
+                  key: hostname
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: watcher
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: watcher
+                  key: password
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: watcher
+                  key: database
+            - name: DB_CONNECTIONS
+              valueFrom:
+                secretKeyRef:
+                  name: watcher
+                  key: connections

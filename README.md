@@ -13,8 +13,9 @@ Then you can start the server with the following command. Make sure to replace t
 
 ```
 $ git clone <URL>
-$ npm install
-$ GITHUB_TOKEN=<yourGitHubToken> docker-compose up
+$ npm ci
+$ docker-compose up -d
+$ GITHUB_TOKEN=<yourGitHubToken> npm start
 ```
 
 Now you can access the website for it at ```localhost:3000```.
@@ -25,5 +26,5 @@ Running the fetch script
 The fetch script can be run to make sure the website has the latest information. It automatically refreshes itself when running with `npm start`, so this is only needed for updates additionally to that.
 
 ```
-$ npm run fetch
+$ GITHUB_TOKEN=<yourGitHubToken> npm run fetch
 ```
