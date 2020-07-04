@@ -6,9 +6,7 @@
     "start": "docker-compose up",
     "start:server": "DEBUG=mozilla-github-watcher* node index.js",
     "fetch": "DEBUG=mozilla-github-watcher* node ./lib/fetch.js",
-    "test": "ava",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "test": "ava"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -19,8 +17,7 @@
     "mysql": "^2.18.1",
     "node-cron": "^2.0.3",
     "node-fetch": "^2.6.0",
-    "pug": "^2.0.4",
-    "snyk": "^1.324.0"
+    "pug": "^2.0.4"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
@@ -32,6 +29,5 @@
         "tests/**/*.js"
       ]
     }
-  },
-  "snyk": true
+  }
 }
