@@ -6,7 +6,8 @@
     "start": "docker-compose up",
     "start:server": "DEBUG=mozilla-github-watcher* node index.js",
     "fetch": "DEBUG=mozilla-github-watcher* node ./lib/fetch.js",
-    "test": "ava"
+    "test": "ava",
+    "findorgs": "node scripts/orga-crawler.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -21,7 +22,11 @@
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
-    "ava": "^3.10.0"
+    "@octokit/plugin-retry": "^3.0.3",
+    "@octokit/plugin-throttling": "^3.3.0",
+    "@octokit/rest": "^18.0.0",
+    "ava": "^3.10.0",
+    "cli-progress": "^3.8.2"
   },
   "ava": {
     "babel": {
