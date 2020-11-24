@@ -5,20 +5,13 @@ on:
     branches:
       - main
 jobs:
-  context:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [10.x, 12.x, 14.x]
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -33,7 +26,7 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Build Docker
       run: |
         docker build -t mozillach/watcher:$GITHUB_SHA -f Dockerfile-PROD .
@@ -50,21 +43,17 @@ jobs:
     needs: [docker-build]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Update deployment file
       run: |
         sed -i 's|<TAG>|'${GITHUB_SHA}'|' $GITHUB_WORKSPACE/k8s/deployment.yaml
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
     - name: Save DigitalOcean kubeconfig
-      uses: digitalocean/action-doctl@master
-      env:
-        DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      with:
-        args: kubernetes cluster kubeconfig show k8s-michaelkohler-fra-personal > $GITHUB_WORKSPACE/.kubeconfig
+      run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-michaelkohler-fra-personal
     - name: Deploy to DigitalOcean Kubernetes
-      uses: docker://lachlanevenson/k8s-kubectl
-      with:
-        args: --kubeconfig=/github/workspace/.kubeconfig apply -f /github/workspace//k8s/deployment.yaml
+      run: kubectl apply -f $GITHUB_WORKSPACE/k8s/deployment.yaml
     - name: Verify deployment
-      uses: docker://lachlanevenson/k8s-kubectl
-      with:
-        args: --kubeconfig=/github/workspace/.kubeconfig rollout status deployment/mozilla-watcher-deployment
+      run: kubectl rollout status deployment/mozilla-watcher-deployment
