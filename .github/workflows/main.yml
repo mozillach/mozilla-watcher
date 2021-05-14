@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [12.x, 14.x, 16.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -22,38 +22,4 @@ jobs:
       run: npm test
       env:
         CI: true
-  docker-build:
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build Docker
-      run: |
-        docker build -t mozillach/watcher:$GITHUB_SHA -f Dockerfile-PROD .
-      env:
-        CI: true
-    - name: Publish Docker
-      env:
-        CI: true
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: |
-        docker login -u michaelkohler -p $DOCKER_PASSWORD
-        docker push mozillach/watcher:$GITHUB_SHA
-  kube-deploy:
-    needs: [docker-build]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Update deployment file
-      run: |
-        sed -i 's|<TAG>|'${GITHUB_SHA}'|' $GITHUB_WORKSPACE/k8s/deployment.yaml
-    - name: Install doctl
-      uses: digitalocean/action-doctl@v2
-      with:
-        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-    - name: Save DigitalOcean kubeconfig
-      run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-michaelkohler-fra-personal
-    - name: Deploy to DigitalOcean Kubernetes
-      run: kubectl apply -f $GITHUB_WORKSPACE/k8s/deployment.yaml
-    - name: Verify deployment
-      run: kubectl rollout status deployment/mozilla-watcher-deployment
+    # TODO: auto merge to update branch
