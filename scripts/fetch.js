@@ -1,9 +1,9 @@
 'use strict';
 
 const debug = require('debug')('mozilla-github-watcher:fetch');
-const GitHubHelper = require('./github-helper');
-const StorageHandler = require('./storage-handler');
-const WikiHelper = require('./wiki-helper');
+const GitHubHelper = require('../lib/github-helper');
+const WikiHelper = require('../lib/wiki-helper');
+const storageHandler = require('../lib/storage-handler');
 const REPO_NAMES = require('../organizations.json');
 
 const githubAuth = {
@@ -11,16 +11,9 @@ const githubAuth = {
 };
 
 const githubHelper = new GitHubHelper(REPO_NAMES, githubAuth);
-const storageHandler = StorageHandler.getInstance();
 const wikiHelper = new WikiHelper();
 
-module.exports = {
-  fetchAll,
-};
-
 async function fetchAll() {
-  await storageHandler.connect();
-
   const [newRepositories, newestEdits] = await Promise.all([
     githubHelper.getAll(),
     wikiHelper.getLatestEdits(),
@@ -29,8 +22,10 @@ async function fetchAll() {
   debug(`got ${newRepositories.length} repositories`);
   debug(`got ${newestEdits.length} wiki edits`);
 
-  await storageHandler.saveRepos(newRepositories);
-  await storageHandler.saveWikiEdits(newestEdits);
+  storageHandler.saveRepos(newRepositories);
+  storageHandler.saveWikiEdits(newestEdits);
 
   debug('FETCH_DONE');
 }
+
+fetchAll();

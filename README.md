@@ -1,30 +1,28 @@
-Mozilla Watcher
-=====
+# Mozilla Watcher
 
 This script watches the Mozilla GitHub organizations and saves the newly discovered repositories. It
 also saves the newly edited wiki pages.
 
-Setting up the server
------
+This repo can be hosted on a static page, all the updating happens through GitHub Actions.
 
-First install [Docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/).
+## Fetching data
 
-Then you can start the server with the following command. Make sure to replace the placeholders with your data.
-
-```
-$ git clone <URL>
-$ npm ci
-$ docker-compose up -d
-$ GITHUB_TOKEN=<yourGitHubToken> DB_HOSTNAME=localhost DB_USERNAME=admin DB_PASSWORD=localdevelopment DB_DATABASE=watcher npm run start:server
-```
-
-Now you can access the website for it at ```localhost:3000```.
-
-Running the fetch script
-------
-
-The fetch script can be run to make sure the website has the latest information. It automatically refreshes itself when running with `npm run start:server`, so this is only needed for updates additionally to that.
+Then you can start the fetch and build with the following commands. Make sure to replace the placeholders with your data.
 
 ```
-$ GITHUB_TOKEN=<yourGitHubToken> DB_HOSTNAME=localhost DB_USERNAME=admin DB_PASSWORD=localdevelopment DB_DATABASE=watcher npm run fetch
+git clone <URL>
+npm ci
+GITHUB_TOKEN=<yourGitHubToken> npm start
+# After fetching, you can serve the locally generated HTML file
+npm run serve
 ```
+
+The output will be available at http://localhost:5000.
+
+## Branches
+
+* main: business logic and main branch for all code
+* update: used to automatically update to the latest data - no changes needed here
+* gh-pages: rendered HTML to serve by GitHub Pages
+
+Any push to main will also automatically update the "update" branch through a GitHub Action.

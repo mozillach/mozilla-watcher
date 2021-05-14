@@ -3,3 +3,6 @@
 node_modules
 db.json
 repos.json
+public/index.html
+allRepos.json
+wikiEdits.json
