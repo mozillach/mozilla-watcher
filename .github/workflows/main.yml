@@ -27,6 +27,8 @@ jobs:
     needs: test
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Merge to update branch
       uses: robotology/gh-action-nightly-merge@4047e51ca91b0629e5c66eb69e0f59ffba33d97b
       with:
