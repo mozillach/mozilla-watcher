@@ -24,6 +24,7 @@ jobs:
         CI: true
   merge:
     runs-on: ubuntu-latest
+    needs: test
     steps:
     - uses: actions/checkout@v2
     - name: Merge to update branch
@@ -31,7 +32,7 @@ jobs:
       with:
         stable_branch: 'main'
         development_branch: 'update'
-        allow_ff: false
+        allow_ff: true
         user_name: GitHub Action
         user_email: actions@github.com
       env:
