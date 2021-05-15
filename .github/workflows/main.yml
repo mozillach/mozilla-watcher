@@ -1,4 +1,4 @@
-name: Main Deployment
+name: Main
 
 on:
   push:
@@ -22,4 +22,16 @@ jobs:
       run: npm test
       env:
         CI: true
-    # TODO: auto merge to update branch
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Merge to update branch
+      uses: robotology/gh-action-nightly-merge@4047e51ca91b0629e5c66eb69e0f59ffba33d97b
+      with:
+        stable_branch: 'main'
+        development_branch: 'update'
+        allow_ff: false
+        user_name: GitHub Action
+        user_email: actions@github.com
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
