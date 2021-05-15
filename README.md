@@ -18,11 +18,3 @@ npm run serve
 ```
 
 The output will be available at http://localhost:5000.
-
-## Branches
-
-* main: business logic and main branch for all code
-* update: used to automatically update to the latest data - no changes needed here
-* gh-pages: rendered HTML to serve by GitHub Pages
-
-Any push to main will also automatically update the "update" branch through a GitHub Action.
