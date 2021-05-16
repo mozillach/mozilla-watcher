@@ -1,6 +1,8 @@
 name: Update & Deploy
 
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: "15 * * * *"
 
 jobs:
   update:
