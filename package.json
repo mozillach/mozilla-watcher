@@ -19,7 +19,7 @@
     "@ava/babel": "^1.0.1",
     "@octokit/plugin-retry": "^3.0.7",
     "@octokit/plugin-throttling": "^3.4.1",
-    "@octokit/rest": "^18.5.3",
+    "@octokit/rest": "^18.5.4",
     "ava": "^3.15.0",
     "cli-progress": "^3.9.0",
     "serve": "^11.3.2"
