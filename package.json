@@ -16,7 +16,7 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "@ava/babel": "^1.0.1",
+    "@ava/babel": "^2.0.0",
     "@octokit/plugin-retry": "^3.0.9",
     "@octokit/plugin-throttling": "^3.5.1",
     "@octokit/rest": "^18.6.6",
