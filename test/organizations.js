@@ -1,10 +1,12 @@
 import test from 'ava';
 import fs from 'fs';
-import util from 'util';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import util from 'util';
 // import fetch from 'node-fetch';
 
-const ORGANIZATIONS = path.resolve(__dirname, '..', 'organizations.json');
+const filePath = fileURLToPath(import.meta.url);
+const ORGANIZATIONS = path.resolve(path.dirname(filePath), '..', 'organizations.json');
 
 const loadFile = async (file) => {
     const data = await util.promisify(fs.readFile)(file, { encoding: 'utf-8' });

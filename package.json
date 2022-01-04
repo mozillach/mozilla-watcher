@@ -2,6 +2,7 @@
   "name": "mozilla-github-watcher",
   "version": "1.4.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "npm run fetch && npm run build",
     "fetch": "DEBUG=mozilla-github-watcher* node ./scripts/fetch.js",
@@ -12,23 +13,15 @@
   },
   "dependencies": {
     "debug": "^4.3.3",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.0",
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "@ava/babel": "^2.0.0",
     "@octokit/plugin-retry": "^3.0.9",
     "@octokit/plugin-throttling": "^3.5.2",
     "@octokit/rest": "^18.12.0",
-    "ava": "^3.15.0",
+    "ava": "^4.0.0",
     "cli-progress": "^3.9.1",
     "serve": "^13.0.2"
-  },
-  "ava": {
-    "babel": {
-      "compileAsTests": [
-        "tests/**/*.js"
-      ]
-    }
   }
 }

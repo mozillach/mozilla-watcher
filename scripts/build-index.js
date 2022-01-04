@@ -1,22 +1,26 @@
-const fs = require('fs');
-const path = require('path');
-const pug = require('pug');
-const debug = require('debug')('mozilla-github-watcher:build-index');
+import Debug from 'debug';
+import fs from 'fs';
+import path from 'path';
+import pug from 'pug';
+import { fileURLToPath } from 'url';
 
-const storageHandler = require('../lib/storage-handler');
+import * as storageHandler from '../lib/storage-handler.js';
 
-const INDEX_PUG_PATH = path.join(__dirname, '../index.pug');
-const INDEX_FILE_PATH = path.join(__dirname, '../public/index.html');
+const debug = new Debug('mozilla-github-watcher:build-index');
+
+const filePath = fileURLToPath(import.meta.url);
+const indexPugPath = path.resolve(path.dirname(filePath), '..', 'index.pug');
+const indexFilePath = path.resolve(path.dirname(filePath), '..', 'public', 'index.html');
 
 debug('Getting data...')
 const repos = storageHandler.getRepos();
 const wikiEdits = storageHandler.getWikiEdits();
 
 debug('Rendering HTML...')
-const html = pug.renderFile(INDEX_PUG_PATH, {
+const html = pug.renderFile(indexPugPath, {
   repos,
   wikiEdits,
 });
 
 debug('Writing HTML...')
-fs.writeFileSync(INDEX_FILE_PATH, html);
+fs.writeFileSync(indexFilePath, html);

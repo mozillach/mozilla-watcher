@@ -1,16 +1,19 @@
 'use strict';
 
-const debug = require('debug')('mozilla-github-watcher:fetch');
-const GitHubHelper = require('../lib/github-helper');
-const WikiHelper = require('../lib/wiki-helper');
-const storageHandler = require('../lib/storage-handler');
-const REPO_NAMES = require('../organizations.json');
+import Debug from 'debug';
+import GitHubHelper from '../lib/github-helper.js';
+import WikiHelper from '../lib/wiki-helper.js';
+import * as storageHandler from '../lib/storage-handler.js';
+import { readJSON } from './utils.js';
+
+const debug = new Debug('mozilla-github-watcher:fetch');
 
 const githubAuth = {
   token: process.env.GITHUB_TOKEN,
 };
 
-const githubHelper = new GitHubHelper(REPO_NAMES, githubAuth);
+const orgNames = await readJSON('../organizations.json');
+const githubHelper = new GitHubHelper(orgNames, githubAuth);
 const wikiHelper = new WikiHelper();
 
 async function fetchAll() {

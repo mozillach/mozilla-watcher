@@ -1,10 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const { Octokit } = require('@octokit/rest');
-const { throttling } = require('@octokit/plugin-throttling');
-const { retry } = require('@octokit/plugin-retry');
-const organizations = require('../organizations.json');
-const cliProgress = require('cli-progress');
+import cliProgress from 'cli-progress';
+import fs from 'fs';
+import path from 'path';
+import { Octokit } from '@octokit/rest';
+import { throttling } from '@octokit/plugin-throttling';
+import { retry } from '@octokit/plugin-retry';
+
+import { readJSON } from './utils.js';
+
+const organizations = await readJSON('../organizations.json');
 
 //TODO could potentially catch more orgas by checking all PRs of a user for a repo that belongs to an orga
 
