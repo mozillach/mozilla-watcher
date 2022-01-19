@@ -9,7 +9,7 @@ const filePath = fileURLToPath(import.meta.url);
 const ORGANIZATIONS = path.resolve(path.dirname(filePath), '..', 'organizations.json');
 
 const loadFile = async (file) => {
-    const data = await util.promisify(fs.readFile)(file, { encoding: 'utf-8' });
+    const data = await util.promisify(fs.readFile)(file);
     return JSON.parse(data);
 }
 
