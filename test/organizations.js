@@ -3,13 +3,12 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import util from 'util';
-// import fetch from 'node-fetch';
 
 const filePath = fileURLToPath(import.meta.url);
 const ORGANIZATIONS = path.resolve(path.dirname(filePath), '..', 'organizations.json');
 
 const loadFile = async (file) => {
-    const data = await util.promisify(fs.readFile)(file, { encoding: 'utf-8' });
+    const data = await util.promisify(fs.readFile)(file);
     return JSON.parse(data);
 }
 
@@ -29,19 +28,3 @@ test('check organizations to be valid logins', async (t) => {
         t.not(org.search(/^[0-9a-zA-Z_-]+$/), -1);
     }
 });
-
-// test('organizations exist on GitHub', async (t) => {
-//     const organizations = await loadFile(ORGANIZATIONS);
-//     // Do this one after another to reduce rate limit issues.
-//     for(const org of organizations) {
-//         const request = await fetch(`https://api.github.com/orgs/${org}`);
-//         t.true(request.ok);
-//         t.is(request.status, 200);
-//         const json = await request.json();
-//         t.is(json.login.toLowerCase(), org.toLowerCase());
-//         if(parseInt(request.headers.get('X-RateLimit-Remaining'), 10) <= 1) {
-//             const timeToReset = parseInt(request.headers.get('X-RateLimit-Reset'), 10) * 1000 - Date.now();
-//             await new Promise((resolve) => setTimeout(resolve, timeToReset));
-//         }
-//     }
-// });
