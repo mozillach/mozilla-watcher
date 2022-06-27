@@ -23,7 +23,7 @@
     "@octokit/plugin-throttling": "^3.7.0",
     "@octokit/rest": "^18.12.0",
     "ava": "^4.3.0",
-    "cli-progress": "^3.11.1",
+    "cli-progress": "^3.11.2",
     "serve": "^13.0.2"
   },
   "ava": {
