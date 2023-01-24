@@ -18,7 +18,7 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "@octokit/action": "^4.0.10",
+    "@octokit/action": "^5.0.2",
     "@octokit/plugin-retry": "^4.0.3",
     "@octokit/plugin-throttling": "^5.0.1",
     "@octokit/rest": "^19.0.5",
