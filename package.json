@@ -21,7 +21,7 @@
     "@octokit/action": "^5.0.2",
     "@octokit/plugin-retry": "^4.0.3",
     "@octokit/plugin-throttling": "^5.0.1",
-    "@octokit/rest": "^19.0.5",
+    "@octokit/rest": "^19.0.7",
     "ava": "^5.1.1",
     "cli-progress": "^3.11.2",
     "serve": "^14.1.2"
