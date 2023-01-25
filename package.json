@@ -24,7 +24,7 @@
     "@octokit/rest": "^19.0.7",
     "ava": "^5.1.1",
     "cli-progress": "^3.11.2",
-    "serve": "^14.1.2"
+    "serve": "^14.2.0"
   },
   "ava": {
     "files": [
