@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@octokit/action": "^6.0.5",
-    "@octokit/plugin-retry": "^5.0.5",
+    "@octokit/plugin-retry": "^6.0.0",
     "@octokit/plugin-throttling": "^5.2.2",
     "@octokit/rest": "^20.0.1",
     "ava": "^5.3.1",
