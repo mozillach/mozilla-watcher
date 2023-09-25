@@ -43,8 +43,8 @@ const octokit = new BetterOctokit({
                 return true;
             }
         },
-        onAbuseLimit(retryAfter) {
-            setStatus('abuse limit reached.', true);
+        onSecondaryRateLimit() {
+            setStatus('secondary rate limit reached.', true);
         }
     }
 });
