@@ -23,8 +23,8 @@ test.before((t) => {
                     return true;
                 }
             },
-            onAbuseLimit(retryAfter) {
-                t.log('abuse limit reached.', true);
+            onSecondaryRateLimit() {
+                t.log('secondary rate limit reached.', true);
             }
         }
     });
