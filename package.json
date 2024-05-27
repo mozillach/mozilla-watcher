@@ -15,7 +15,7 @@
   "dependencies": {
     "debug": "^4.3.4",
     "node-fetch": "^3.3.2",
-    "pug": "^3.0.2"
+    "pug": "^3.0.3"
   },
   "devDependencies": {
     "@octokit/action": "^7.0.0",
