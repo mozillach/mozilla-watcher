@@ -13,7 +13,7 @@
     "findorgs": "node scripts/orga-crawler.js"
   },
   "dependencies": {
-    "debug": "^4.3.4",
+    "debug": "^4.3.5",
     "node-fetch": "^3.3.2",
     "pug": "^3.0.3"
   },
