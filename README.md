@@ -17,4 +17,4 @@ GITHUB_TOKEN=<yourGitHubToken> npm start
 npm run serve
 ```
 
-The output will be available at http://localhost:5000.
+The output will be available at http://localhost:3000.
