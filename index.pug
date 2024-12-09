@@ -3,23 +3,15 @@ html(lang='en-US')
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Zilla+Slab')
     link(rel='shortcut icon' type='image/png' sizes="196x196" href='/favicon.png')
 
   body
     header
       nav
+        img(src='/logo.svg')
         ul
           li
-            a(href='#repos') Newest Repositories
-          li
-            a(href='#wiki') Latest Wiki Edits
-          li
             a(href='https://github.com/mozillach/mozilla-watcher/') Contribute
-
-    h1 Latest&nbsp;
-      span.logo mozilla
-      span &nbsp;Project Updates
 
     .container
       .col

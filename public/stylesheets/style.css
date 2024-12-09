@@ -1,22 +1,16 @@
 @font-face {
-  font-family: "ZillaSlabHighlightBold";
-  src: url("../fonts/ZillaSlabHighlight-Bold.woff2");
+  font-family: "MozillaHeadlineSemiBold";
+  src: url("../fonts/MozillaHeadline-SemiBold.woff2");
 }
 
 @font-face {
-  font-family: 'MetropolisMedium';
-  src: url('../fonts/Metropolis-Medium.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('../fonts/Inter-Regular.woff2') format('woff2');
+  font-family: 'MozillaText';
+  src: url('../fonts/MozillaText-Regular.woff2') format('woff2');
 }
 
 :root {
-  --brand-color: #000;
-  --link-color: #0060df;
-  --link-hover-color: #003eaa;
+  --brand-color: #d6ffcd;
+  --link-color: #000;
 }
 
 html {
@@ -25,16 +19,12 @@ html {
 }
 
 body {
-  font-size: 0.7rem;
-  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-family: 'MozillaTextSemiBold', sans-serif;
   margin: 0px;
   color: #4D4E53;
   background-color: #FFF;
-}
-
-.logo {
-  font-family: 'ZillaSlabHighlightBold', serif;
-  color: black;
+  line-height: 1.2rem;
 }
 
 h1 {
@@ -44,18 +34,14 @@ h1 {
 
 h2 {
   display: inline-block;
-  font-family: 'MetropolisMedium', serif;
+  font-family: 'MozillaHeadlineSemiBold', serif;
   font-size: 3rem;
-  color: var(--brand-color);
-}
-
-h2 {
   margin-top: 50px;
 }
 
 .col {
-  min-width: 48vw;
-  max-width: 48vw;
+  min-width: 47vw;
+  max-width: 47vw;
 }
 
 table {
@@ -73,14 +59,13 @@ th tr {
 }
 
 table td, table th {
-  padding: 5px;
+  padding-inline: 5px;
+  padding-block: 10px;
 }
 
 th {
   text-align: left;
   background-color: var(--brand-color);
-  color: #FFF;
-  font-family: 'MetropolisMedium', serif;
 }
 
 .info {
@@ -93,23 +78,28 @@ a {
 }
 
 a:hover, a:visited {
-  color: var(--link-hover-color);
+  text-decoration: underline;
 }
 
 header {
   height: 50px;
-  background-color: #000;
-  color: #FFF;
-  font-family: 'MetropolisMedium', serif;
-  text-align: center;
 }
 
 nav {
-  display: inline-block;
-  min-height: 100%;
   display: flex;
+  flex-direction: row;
+  min-height: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding-inline: 30px;
+  box-shadow:
+    0 0 6px 1px rgba(29,17,51,.04),
+    0 0 8px 2px rgba(9,32,77,.12),
+    0 0 5px -3px rgba(29,17,51,.12);
+}
+
+nav img {
+  height: 24px;
 }
 
 nav ul {
