@@ -19,7 +19,7 @@
   "devDependencies": {
     "@octokit/action": "^7.0.1",
     "@octokit/plugin-retry": "^7.1.4",
-    "@octokit/plugin-throttling": "^9.4.0",
+    "@octokit/plugin-throttling": "^9.6.0",
     "@octokit/rest": "^21.1.1",
     "ava": "^6.2.0",
     "cli-progress": "^3.12.0",
