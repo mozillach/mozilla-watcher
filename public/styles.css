@@ -1,11 +1,11 @@
 @font-face {
   font-family: "MozillaHeadlineSemiBold";
-  src: url("../fonts/MozillaHeadline-SemiBold.woff2");
+  src: url("fonts/MozillaHeadline-SemiBold.woff2");
 }
 
 @font-face {
   font-family: 'MozillaText';
-  src: url('../fonts/MozillaText-Regular.woff2') format('woff2');
+  src: url('fonts/MozillaText-Regular.woff2') format('woff2');
 }
 
 :root {
