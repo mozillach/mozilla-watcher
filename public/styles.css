@@ -68,6 +68,10 @@ th {
   background-color: var(--brand-color);
 }
 
+.info {
+  padding-left: 5px;
+}
+
 a {
   color: var(--link-color);
   text-decoration: none;
