@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "debug": "^4.4.3",
-    "pug": "^3.0.3"
+    "pug": "^3.0.4"
   },
   "devDependencies": {
     "@octokit/action": "^8.0.4",
